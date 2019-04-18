@@ -1,0 +1,16 @@
+{
+  "name": "bubbue-server",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.0",
+    "mongoose": "^5.0.17",
+    "paystack": "^2.0.1"
+  },
+  "scripts": {
+    "start": "node server.js $PORT=3000"
+  }
+}
