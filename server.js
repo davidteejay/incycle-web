@@ -1,27 +1,25 @@
-var express = require('express');
-var router = require('./routes/routes.js')
-var path = require('path');
-var bodyParser = require('body-parser');
-var app = express();
-var mongoose = require('mongoose');
-var urlencoded_body_parser = bodyParser.urlencoded({
+const express = require('express')
+const router = require('./routes/')
+const bodyParser = require('body-parser')
+const app = express()
+const mongoose = require('mongoose')
+const urlencoded_body_parser = bodyParser.urlencoded({
     extended: true
-});
-var port = 3000;
+})
+const port = 3000
+const { DB_URL } = require('./config/constants')
 
-// yoyoyoyo
-app.use(bodyParser.json());
-app.use(urlencoded_body_parser);
+app.use(bodyParser.json())
+app.use(urlencoded_body_parser)
 
-const dbUrl = "mongodb://tushh:brainbox@ds016298.mlab.com:16298/bubbue";
-mongoose.connect(dbUrl)
+mongoose.connect(DB_URL)
     .then(() => console.log('Connected to DB'))
     .catch(() => console.log('DB Offline'))
 
-app.use('/', router);
+app.use('/api/v1/', router)
 
 app.listen(process.env.PORT || port, () => {
-    console.log('running at localhost:' + port);
+    console.log('running at localhost:' + port)
 })
 
-module.exports = app;
+module.exports = app
