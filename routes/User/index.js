@@ -21,10 +21,10 @@ router.get('/', (req, res) => {
 	})
 })
 
-router.get('/:username', (req, res) => {
-	const { username } = req.params
+router.get('/:email', (req, res) => {
+	const { email } = req.params
 
-	User.findOne({ username }, (err, data) => {
+	User.findOne({ email }, (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,
@@ -39,10 +39,10 @@ router.get('/:username', (req, res) => {
 	})
 })
 
-router.put('/:username', (req, res) => {
-	const { username } = req.params
+router.put('/:email', (req, res) => {
+	const { email } = req.params
 
-	User.findByIdAndUpdate({ username }, { ...req.body }, (err, data) => {
+	User.findByIdAndUpdate({ email }, { ...req.body }, (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,
@@ -57,10 +57,10 @@ router.put('/:username', (req, res) => {
 	})
 })
 
-router.delete('/:username', (res, res) => {
-	const { username } = req.params
+router.delete('/:email', (res, res) => {
+	const { email } = req.params
 
-	User.findByIdAndUpdate({ username }, { isDeleted: true }, (err, data) => {
+	User.findByIdAndUpdate({ email }, { isDeleted: true }, (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,
@@ -76,9 +76,9 @@ router.delete('/:username', (res, res) => {
 })
 
 router.post('/login', (req, res) => {
-	const { username, password } = req.body
+	const { email, password } = req.body
 
-	User.findOne({ username, password, isDeleted: false }, (err, data) => {
+	User.findOne({ email, password, isDeleted: false }, (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,
@@ -87,7 +87,7 @@ router.post('/login', (req, res) => {
 
 		if (data === null) res.send({
 			data,
-			message: 'Username or Password is incorrect',
+			message: 'Email or Password is incorrect',
 			error: true
 		})
 		else {
@@ -106,9 +106,9 @@ router.post('/login', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
-	const { username } = req.body
+	const { email } = req.body
 
-	User.findOne({ username, isDeleted: false }, (err, data) => {
+	User.findOne({ email, isDeleted: false }, (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,
@@ -117,7 +117,7 @@ router.post('/signup', (req, res) => {
 
 		if (data !== null) res.send({
 			data: null,
-			message: 'Username already exists',
+			message: 'exists',
 			error: true
 		})
 		else {

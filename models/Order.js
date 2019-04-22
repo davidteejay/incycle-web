@@ -6,7 +6,19 @@ const order = new mongoose.Schema({
 		required: true
 	},
 	details: {
-		type: Array,
+		type: Object,
+		required: true
+	},
+	deliveryFee: {
+		type: Number,
+		default: 0
+	},
+	serviceFee: {
+		type: Number,
+		default: 0
+	},
+	totalPrice: {
+		type: Number,
 		required: true
 	},
 	status: {
