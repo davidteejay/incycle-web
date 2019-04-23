@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 
 const Auth = require('./User/')
-const Orders = require('./Order/')
+// const Orders = require('./Order/')
 
 app.use('/user', Auth)
 // app.use('/orders', Orders)
