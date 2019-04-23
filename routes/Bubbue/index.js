@@ -56,7 +56,7 @@ router.put('/:area', (req, res) => {
 	})
 })
 
-router.route('/:area').delete((req, res) => {
+router.delete('/:area', (req, res) => {
 	const { area } = req.params
 
 	Bubbue.findByIdAndUpdate({ area }, { isDeleted: true }, (err, data) => {

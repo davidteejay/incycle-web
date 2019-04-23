@@ -57,7 +57,7 @@ router.put('/:email', (req, res) => {
 	})
 })
 
-router.route('/:email').delete('/:email', (req, res) => {
+router.delete('/:email', (req, res) => {
 	const { email } = req.params
 
 	User.findByIdAndUpdate({ email }, { isDeleted: true }, (err, data) => {
