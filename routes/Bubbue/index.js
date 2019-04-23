@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 router.get('/:location', (req, res) => {
 	const { location } = req.params
 
-	Bubbue.findOne({ area }, (err, data) => {
+	Bubbue.findOne({ location }, (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,
@@ -41,7 +41,7 @@ router.get('/:location', (req, res) => {
 router.put('/:location', (req, res) => {
 	const { location } = req.params
 
-	Bubbue.findByIdAndUpdate({ area }, { ...req.body }, (err, data) => {
+	Bubbue.findByIdAndUpdate({ location }, { ...req.body }, (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,
@@ -59,7 +59,7 @@ router.put('/:location', (req, res) => {
 router.delete('/:location', (req, res) => {
 	const { location } = req.params
 
-	Bubbue.findByIdAndUpdate({ area }, { isDeleted: true }, (err, data) => {
+	Bubbue.findByIdAndUpdate({ location }, { isDeleted: true }, (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,
