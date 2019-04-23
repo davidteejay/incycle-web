@@ -5,6 +5,6 @@ const Auth = require('./User/')
 const Orders = require('./Order/')
 
 app.use('/user', Auth)
-app.use('/orders', Orders)
+// app.use('/orders', Orders)
 
 module.exports = app
