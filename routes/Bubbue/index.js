@@ -20,8 +20,8 @@ router.get('/', (req, res) => {
 	})
 })
 
-router.get('/:area', (req, res) => {
-	const { area } = req.params
+router.get('/:location', (req, res) => {
+	const { location } = req.params
 
 	Bubbue.findOne({ area }, (err, data) => {
 		if (err) res.send({
@@ -38,8 +38,8 @@ router.get('/:area', (req, res) => {
 	})
 })
 
-router.put('/:area', (req, res) => {
-	const { area } = req.params
+router.put('/:location', (req, res) => {
+	const { location } = req.params
 
 	Bubbue.findByIdAndUpdate({ area }, { ...req.body }, (err, data) => {
 		if (err) res.send({
@@ -56,8 +56,8 @@ router.put('/:area', (req, res) => {
 	})
 })
 
-router.delete('/:area', (req, res) => {
-	const { area } = req.params
+router.delete('/:location', (req, res) => {
+	const { location } = req.params
 
 	Bubbue.findByIdAndUpdate({ area }, { isDeleted: true }, (err, data) => {
 		if (err) res.send({
@@ -75,9 +75,9 @@ router.delete('/:area', (req, res) => {
 })
 
 router.post('/add', (req, res) => {
-	const { area } = req.body
+	const { location } = req.body
 
-	Bubbue.findOne({ area, isDeleted: false }, (err, data) => {
+	Bubbue.findOne({ location, isDeleted: false }, (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,

@@ -1,0 +1,50 @@
+{
+	"location": "FUTA, Ondo State",
+		"setup": {
+		"men": [
+			{
+				"name": "mens casual tops and trousers",
+				"wash": 50,
+				"washAndIron": 100,
+				"washAndIronAndStarch": 150
+			}, {
+				"name": "mens native tops and trousers",
+				"wash": 50,
+				"washAndIron": 100,
+				"washAndIronAndStarch": 150
+			}
+		],
+			"ladies": [
+				{
+					"name": "ladies casual tops and trousers/skirts",
+					"wash": 50,
+					"washAndIron": 100,
+					"washAndIronAndStarch": 150
+				}, {
+					"name": "ladies gowns or native top + skirt, gowns",
+					"wash": 100,
+					"washAndIron": 200,
+					"washAndIronAndStarch": 350
+				}
+			],
+				"others": [
+					{
+						"name": "bedsheets (wash only)",
+						"studentSize": 150,
+						"bigBed": 300,
+						"bigDuvet": 800,
+						"pillowCase": 100
+					}, {
+						"name": "towels (wash only)",
+						"smallSize": 100,
+						"bigSize": 150
+					}, {
+						"name": "curtains (wash only)",
+						"oneDoorSize": 150,
+						"twoWindowSize": 300
+					}
+				]
+	},
+	"deliveryFee": 100,
+		"serviceTime": 48
+}
