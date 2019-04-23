@@ -13,9 +13,9 @@ const bubbue = new mongoose.Schema({
 		type: Number,
 		default: 0
 	},
-	serviceFee: {
+	serviceTime: {
 		type: Number,
-		default: 0
+		default: 48
 	},
 	isDeleted: {
 		type: Boolean,

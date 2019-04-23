@@ -57,23 +57,23 @@ router.put('/:email', (req, res) => {
 	})
 })
 
-router.delete('/:email', (res, res) => {
-	const { email } = req.params
+// router.delete('/:email', (res, res) => {
+// 	const { email } = req.params
 
-	User.findByIdAndUpdate({ email }, { isDeleted: true }, (err, data) => {
-		if (err) res.send({
-			data: null,
-			message: err,
-			error: true
-		})
+// 	User.findByIdAndUpdate({ email }, { isDeleted: true }, (err, data) => {
+// 		if (err) res.send({
+// 			data: null,
+// 			message: err,
+// 			error: true
+// 		})
 
-		res.send({
-			data,
-			message: 'Deleted',
-			error: false
-		})
-	})
-})
+// 		res.send({
+// 			data,
+// 			message: 'Deleted',
+// 			error: false
+// 		})
+// 	})
+// })
 
 router.post('/login', (req, res) => {
 	const { email, password } = req.body
