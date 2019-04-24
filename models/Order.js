@@ -6,19 +6,39 @@ const order = new mongoose.Schema({
 		required: true
 	},
 	details: {
-		type: Object,
+		type: Array,
 		required: true
 	},
-	deliveryFee: {
+	orderCost: {
 		type: Number,
 		default: 0
 	},
-	serviceFee: {
+	totalCost: {
 		type: Number,
 		default: 0
 	},
-	totalPrice: {
+	deliveryCost: {
 		type: Number,
+		default: 0
+	},
+	serviceTime: {
+		type: Number,
+		default: 0
+	},
+	paymentType: {
+		type: String,
+		required: true
+	},
+	area: {
+		type: String,
+		required: true
+	},
+	address: {
+		type: String,
+		required: true
+	},
+	phone: {
+		type: String,
 		required: true
 	},
 	status: {

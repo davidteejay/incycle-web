@@ -5,7 +5,7 @@ const router = express.Router()
 const Bubbue = require('../../models/Bubbue')
 
 router.get('/', (req, res) => {
-	Bubbue.find((err, data) => {
+	Bubbue.find({ isDeleted: false }, (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 router.get('/:location', (req, res) => {
 	const { location } = req.params
 
-	Bubbue.findOne({ location }, (err, data) => {
+	Bubbue.findOne({ location, isDeleted: false }, (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,
