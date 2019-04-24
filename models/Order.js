@@ -21,6 +21,10 @@ const order = new mongoose.Schema({
 		type: Number,
 		default: 0
 	},
+	quantity: {
+		type: Number,
+		default: 0
+	},
 	serviceTime: {
 		type: Number,
 		default: 0
