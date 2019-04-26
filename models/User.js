@@ -37,6 +37,10 @@ const user = new mongoose.Schema({
 		type: Boolean,
 		default: true
 	},
+	isAdmin: {
+		type: Boolean,
+		default: false
+	},
 	isDeleted: {
 		type: Boolean,
 		default: false
