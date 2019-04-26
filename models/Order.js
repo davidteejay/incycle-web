@@ -47,7 +47,7 @@ const order = new mongoose.Schema({
 	},
 	status: {
 		type: String,
-		default: 'pending'
+		default: 'ongoing'
 	},
 	isDeleted: {
 		type: Boolean,
