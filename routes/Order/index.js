@@ -10,10 +10,10 @@ router.get('/', (req, res) => {
 
 	if (user){
 		user = mongo.ObjectID(user)
+		console.warn(user)
 		query.user = user
 	}
-	console.warn(user)
-	
+
 	Order
 		.find({ ...query, isDeleted: false })
 		.populate('user')
@@ -88,8 +88,12 @@ router.delete('/:id', (req, res) => {
 	})
 })
 
-router.post('/add', (req, res) => {	
-	new Order({ ...req.body })
+router.post('/add', (req, res) => {
+	let { body } = req
+	body.user = mongo.ObjectID(body.user)
+
+
+	new Order({ body })
 		.save()
 		.then(data => res.send({
 			data,
