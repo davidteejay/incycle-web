@@ -42,7 +42,7 @@ router.get('/:email', (req, res) => {
 router.put('/:email', (req, res) => {
 	const { email } = req.params
 
-	User.findByIdAndUpdate({ email }, { ...req.body }, (err, data) => {
+	User.findOneAndUpdate({ email }, { ...req.body }, (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,
@@ -60,7 +60,7 @@ router.put('/:email', (req, res) => {
 router.delete('/:email', (req, res) => {
 	const { email } = req.params
 
-	User.findByIdAndUpdate({ email }, { isDeleted: true }, (err, data) => {
+	User.findOneAndUpdate({ email }, { isDeleted: true }, (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,
