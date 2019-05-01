@@ -10,13 +10,13 @@ router.get('/', (req, res) => {
 
 	if (user){
 		user = mongo.ObjectID(user)
-		console.warn(user)
+		// console.warn(user)
 		query.user = user
 	}
 
 	Order
 		.find({ ...query, isDeleted: false })
-		.populate('user')
+		.populate('user', '_id name')
 		.then(data => {
 			console.log(data)
 			res.send({
