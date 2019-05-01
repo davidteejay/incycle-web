@@ -2,7 +2,9 @@ const mongoose = require('mongoose')
 
 const order = new mongoose.Schema({
 	user: {
-		type: String,
+		// type: String,
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Users',
 		required: true
 	},
 	details: {
@@ -57,4 +59,4 @@ const order = new mongoose.Schema({
 	timestamps: true
 })
 
-module.exports = mongoose.model('Order', order)
+module.exports = mongoose.model('Orders', order)

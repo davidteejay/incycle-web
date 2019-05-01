@@ -5,19 +5,24 @@ const router = express.Router()
 const Order = require('../../models/Order')
 
 router.get('/', (req, res) => {
-	Order.find({ ...req.query, isDeleted: false }, (err, data) => {
-		if (err) res.send({
-			data: null,
-			message: err,
-			error: true
+	Order
+		.find({ ...req.query, isDeleted: false })
+		.populate('user')
+		.then(data => {
+			console.log(data)
+			res.send({
+				data,
+				message: 'Orders fetched successfully',
+				error: false
+			})
 		})
-
-		res.send({
-			data,
-			message: 'Orders fetched successfully',
-			error: false
+		.catch(err => {
+			res.send({
+				data: null,
+				message: err,
+				error: true
+			})		
 		})
-	})
 })
 
 router.get('/:id', (req, res) => {
