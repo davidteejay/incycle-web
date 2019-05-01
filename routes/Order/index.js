@@ -93,7 +93,7 @@ router.post('/add', (req, res) => {
 	body.user = mongo.ObjectID(body.user)
 
 
-	new Order({ body })
+	new Order({ ...body })
 		.save()
 		.then(data => res.send({
 			data,
