@@ -5,9 +5,17 @@ const router = express.Router()
 const Order = require('../../models/Order')
 
 router.get('/', (req, res) => {
-	console.log(req.query)
+	let { query } = req
+	let { user } = query
+
+	if (user){
+		user = mongo.ObjectID(user)
+		query.user = user
+	}
+	console.warn(user)
+	
 	Order
-		.find({ ...req.query, isDeleted: false })
+		.find({ ...query, isDeleted: false })
 		.populate('user')
 		.then(data => {
 			console.log(data)
