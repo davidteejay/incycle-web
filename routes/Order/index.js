@@ -5,6 +5,7 @@ const router = express.Router()
 const Order = require('../../models/Order')
 
 router.get('/', (req, res) => {
+	console.log(req.query)
 	Order
 		.find({ ...req.query, isDeleted: false })
 		.populate('user')
