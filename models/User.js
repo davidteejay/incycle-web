@@ -19,7 +19,7 @@ const user = new mongoose.Schema({
 	},
 	address: {
 		type: String,
-		required: false
+		required: true
 	},
 	password: {
 		type: String,
@@ -40,6 +40,10 @@ const user = new mongoose.Schema({
 	isActive: {
 		type: Boolean,
 		default: true
+	},
+	isVerified: {
+		type: Boolean,
+		default: false
 	},
 	orders: [{
 		type: mongoose.Schema.Types.ObjectId,
