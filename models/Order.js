@@ -47,6 +47,10 @@ const order = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	laundryPhone: {
+		type: String,
+		required: true
+	},
 	status: {
 		type: String,
 		default: 'ongoing'
