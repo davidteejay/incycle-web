@@ -137,7 +137,8 @@ router.post('/signup', (req, res) => {
 					pass: 'bubbuepass9120'
 				},
 				tls: {
-					ciphers: 'SSLv3'
+					// ciphers: 'SSLv3',
+					rejectUnauthorized: false
 				}
 
 			}),
@@ -181,7 +182,7 @@ router.post('/signup', (req, res) => {
 							.catch(err => res.send({
 								data: null,
 								message: err,
-								error: false
+								error: true
 							}))						
 					})
 					.catch(error => res.send({
