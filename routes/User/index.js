@@ -91,7 +91,7 @@ router.delete('/:email', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-	const { email, password } = req.body
+	const { email, password, fcmToken } = req.body
 
 	User.findOne({ email, password, isDeleted: false }, (err, data) => {
 		if (err) res.send({
@@ -116,11 +116,21 @@ router.post('/login', (req, res) => {
 				message: 'You haven\'t verified your account',
 				error: true
 			})
-			else res.send({
-				data,
-				message: 'Login Successfully',
-				error: false
-			})
+			else {
+				User.findByIdAndUpdate(data._id, { fcmToken }, (err, datum) => {
+					if (err) res.send({
+						data: null,
+						message: err,
+						error: true
+					})
+
+					res.send({
+						data,
+						message: 'Login Successfully',
+						error: false
+					})
+				})
+			}
 		}
 	})
 })
