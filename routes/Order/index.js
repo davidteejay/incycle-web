@@ -75,6 +75,7 @@ router.put('/:id', (req, res) => {
 				content_available: true,
 				notification: { 
 					title: 'Order Updated',
+					channel_id: 'bubbue_channel',
 					body: req.body.status === 'failed' ? `Your order ${ _id } has been cancelled by the admin` : `Your order ${ _id } has been completed`,
 					sound: "default",
 					badge: "1"
@@ -127,6 +128,7 @@ router.post('/add', (req, res) => {
 				registration_ids,
 				priority: 'high',
 				content_available: true,
+				channel_id: 'bubbue_channel',
 				notification: { title: 'New Order', body: 'A new order has been placed in your location', sound: "default", badge: "1" }
 			}
 
@@ -136,6 +138,7 @@ router.post('/add', (req, res) => {
 				to: user.fcmToken,
 				priority: 'high',
 				content_available: true,
+				channel_id: 'bubbue_channel',
 				notification: {
 					title: 'New Order',
 					body: `Your order ${data._id} has been placed successfully`,
