@@ -60,7 +60,7 @@ router.get('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
 	const _id = mongo.ObjectID(req.params.id)
 
-	Order.findByIdAndUpdate({ _id }, { ...req.body }, (err, data) => {
+	Order.findByIdAndUpdate({ _id }, { ...req.body }, async (err, data) => {
 		if (err) res.send({
 			data: null,
 			message: err,
