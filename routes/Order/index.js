@@ -66,28 +66,29 @@ router.put('/:id', (req, res) => {
 			message: err,
 			error: true
 		})
+		else {
+			let user = await User.findById(data.user)
 
-		let user = await User.findById(data.user)
-
-		let payload = {
-			to: user.fcmToken,
-			priority: 'high',
-			content_available: true,
-			notification: { 
-				title: 'Order Updated',
-				body: req.body.status === 'failed' ? `Your order ${ _id } has been cancelled by the admin` : `Your order ${ _id } has been completed`,
-				sound: "default",
-				badge: "1"
+			let payload = {
+				to: user.fcmToken,
+				priority: 'high',
+				content_available: true,
+				notification: { 
+					title: 'Order Updated',
+					body: req.body.status === 'failed' ? `Your order ${ _id } has been cancelled by the admin` : `Your order ${ _id } has been completed`,
+					sound: "default",
+					badge: "1"
+				}
 			}
+
+			fcm.send(payload, () => console.log('update order notif sent'))
+
+			res.send({
+				data,
+				message: 'Updated',
+				error: false
+			})
 		}
-
-		fcm.send(payload, () => console.log('update order notif sent'))
-
-		res.send({
-			data,
-			message: 'Updated',
-			error: false
-		})
 	})
 })
 
@@ -144,12 +145,6 @@ router.post('/add', (req, res) => {
 			}
 
 			fcm.send(newPayload, () => console.log('new order user notif sent'))
-
-			res.send({
-				data,
-				message: 'Updated',
-				error: false
-			})
 
 			res.send({
 				data,
