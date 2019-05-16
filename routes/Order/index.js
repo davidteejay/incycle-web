@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 		.find({ ...query, isDeleted: false })
 		.populate('user', '_id name')
 		.then(data => {
-			console.log(data)
+			// console.log(data)
 			res.send({
 				data,
 				message: 'Orders fetched successfully',
@@ -133,6 +133,7 @@ router.post('/add', (req, res) => {
 			}
 
 			fcm.send(payload, () => console.log('new order admin notif sent'))
+			console.warn(user.fcmToken)
 
 			let newPayload = {
 				to: user.fcmToken,
