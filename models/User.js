@@ -46,8 +46,8 @@ const user = new mongoose.Schema({
 		default: false
 	},
 	fcmToken: {
-		type: Boolean,
-		default: true
+		type: String,
+		default: ''
 	},
 	orders: [{
 		type: mongoose.Schema.Types.ObjectId,
