@@ -82,7 +82,7 @@
 			let hash = (location.href.split('/')[location.href.split('/').length - 1])
 			
 			axios
-				.post('http://bubbueapp.herokuapp.com/api/v1/user/reset', {
+				.post('https://bubbueapp.herokuapp.com/api/v1/user/reset', {
 					hash,
 					password: pwd
 				})
