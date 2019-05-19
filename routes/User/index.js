@@ -6,19 +6,22 @@ const Cryptr = require('cryptr')
 const cryptr = new Cryptr('myTotalySecretKey');
 
 const User = require('../../models/User')
-const Order = require('../../models/Order')
 
-router.get('/encrypt/:string', (req, res) => {
-	const { string } = req.params
+const transporter = nodeMailer.createTransport({
+	host: 'mail.bubbue.com',
+	secureConnection: true,
+	port: 465,
+	auth: {
+		user: 'noreply@bubbue.com',
+		pass: 'bubbuepass9120'
+	},
+	tls: {
+		// ciphers: 'SSLv3',
+		rejectUnauthorized: false
+	}
 
-	res.send(cryptr.encrypt(string))
 })
-
-router.get('/decrypt/:string', (req, res) => {
-	const { string } = req.params
-
-	res.send(cryptr.decrypt(string))
-})
+const from = 'noreply@bubbue.com'
 
 router.get('/', (req, res) => {
 	User.find((err, data) => {
@@ -137,22 +140,7 @@ router.post('/login', (req, res) => {
 
 router.post('/signup', (req, res) => {
 	try {
-		const { email } = req.body,
-			transporter = nodeMailer.createTransport({
-				host: 'mail.bubbue.com',
-				secureConnection: true,
-				port: 465,
-				auth: {
-					user: 'noreply@bubbue.com',
-					pass: 'bubbuepass9120'
-				},
-				tls: {
-					// ciphers: 'SSLv3',
-					rejectUnauthorized: false
-				}
-
-			}),
-			from = 'noreply@bubbue.com'
+		const { email } = req.body
 
 		User.findOne({ email, isDeleted: false }, (err, data) => {
 			if (err) res.send({
@@ -219,6 +207,70 @@ router.get('/verify/:hash', (req, res) => {
 	User.findByIdAndUpdate({ _id }, { isVerified: true }, (err, data) => {
 		if (err) res.render('error.html')
 		else res.render('verify.html')
+	})
+})
+
+router.post('/recover', (req, res) => {
+	try {
+		const { email } = req.body
+
+		User.findOne({ email, isDeleted: false }, (err, data) => {
+			if (err) res.send({
+				data: null,
+				message: err,
+				error: true
+			})
+
+			if (data === null) res.send({
+				data,
+				message: 'Email Address not found',
+				error: true
+			})
+			else {
+				const hash = cryptr.encrypt(data._id)
+
+				transporter
+					.sendMail({
+						from,
+						to: email,
+						subject: 'Verify Your Bubbue Account',
+						html: `
+							<h3>Reset your bubbue account password</h3>
+							<p>
+								Click <a href="https://bubbueapp.herokuapp.com/api/v1/user/reset/${hash}">here</a> to reset the password for your bubbue account
+							</p>
+						`
+					})
+					.then(response => res.send({
+						data,
+						message: 'Email Sent',
+						error: false
+					}))
+					.catch(err => res.send({
+						data: null,
+						message: err,
+						error: true
+					}))
+			}
+		})
+	} catch (err) {
+		res.send({
+			data: null,
+			message: err.message,
+			error: true
+		})
+	}
+})
+
+router.get('/reset/:hash', (req, res) => res.render('reset.html'))
+
+router.post('/reset', (req, res) => {
+	const { password, hash } = req.body,
+		_id = cryptr.decrypt(hash)
+
+	User.findByIdAndUpdate({ _id }, { password }, (err, data) => {
+		if (err) res.render('error.html')
+		else res.sender('reseted.html')
 	})
 })
 
