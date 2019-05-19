@@ -223,7 +223,7 @@ router.post('/recover', (req, res) => {
 
 			if (data === null) res.send({
 				data,
-				message: 'Email Address not found',
+				message: 'Email Address Not Found',
 				error: true
 			})
 			else {
@@ -233,7 +233,7 @@ router.post('/recover', (req, res) => {
 					.sendMail({
 						from,
 						to: email,
-						subject: 'Verify Your Bubbue Account',
+						subject: 'Reset Your Bubbue Account Password',
 						html: `
 							<h3>Reset your bubbue account password</h3>
 							<p>
@@ -269,8 +269,16 @@ router.post('/reset', (req, res) => {
 		_id = cryptr.decrypt(hash)
 
 	User.findByIdAndUpdate({ _id }, { password }, (err, data) => {
-		if (err) res.render('error.html')
-		else res.sender('reseted.html')
+		if (err) res.send({
+			data: null,
+			message: err,
+			error: true
+		})
+		else res.send({
+			data,
+			message: 'Reset successful',
+			error: false
+		})
 	})
 })
 

@@ -77,7 +77,7 @@
 		if (pwd.length < 6) $('#error').text('Password must be at least six characters')
 		else if (pwd !== repwd) $('#error').text('Passwords must match')
 		else {
-			$(this).attr('disabled', 'true')
+			$('button').attr('disabled', 'true')
 
 			let hash = (location.href.split('/')[location.href.split('/').length - 1])
 			
@@ -88,10 +88,10 @@
 				})
 				.then(res => {
 					if (res.data.error) alert(res.data.message)
-					else $('.cover').html('<h5>Password Resset Successfully. Launch the app and login with your details')
+					else $('.cover').html('<h5>Password Reset Successfully. Launch the app and login with your details')
 				})
 				.catch(err => alert(err))
-				.finally(() => $(this).attr('disabled', 'false'))
+				.finally(() => $('button').attr('disabled', 'false'))
 		}
 	})
 </script>
