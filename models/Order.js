@@ -7,6 +7,10 @@ const order = new mongoose.Schema({
 		ref: 'Users',
 		required: true
 	},
+	username: {
+		type: String,
+		default: ''
+	},
 	details: {
 		type: Array,
 		required: true
@@ -36,6 +40,10 @@ const order = new mongoose.Schema({
 		required: true
 	},
 	area: {
+		type: String,
+		required: true
+	},
+	location: {
 		type: String,
 		required: true
 	},
