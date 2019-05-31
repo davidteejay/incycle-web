@@ -1,0 +1,153 @@
+@mixin background($url:none, $pos: center, $size: cover, $repeat: no-repeat, $attach: scroll, $color: transparent){
+  background: {
+    image: url($url);
+    position: $pos;
+    size: $size;
+    repeat: $repeat;
+    attachment: $attach;
+    color: $color;
+  }
+}
+
+@mixin border($size, $style, $color: #000){
+  border: $size $style $color;
+}
+
+@mixin border-top($size, $style, $color: #000){
+  border-top: $size $style $color;
+}
+
+@mixin border-right($size, $style, $color: #000){
+  border-right: $size $style $color;
+}
+
+@mixin border-left($size, $style, $color: #000){
+  border-left: $size $style $color;
+}
+
+@mixin border-bottom($size, $style, $color: #000){
+  border-bottom: $size $style $color;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+@mixin border-top-radius($radius) {
+  -webkit-border-top-right-radius: $radius;
+  border-top-right-radius: $radius;
+   -webkit-border-top-left-radius: $radius;
+   border-top-left-radius: $radius;
+   background-clip: padding-box;
+}
+
+@mixin border-right-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+     -webkit-border-top-right-radius: $radius;
+     border-top-right-radius: $radius;
+     background-clip: padding-box;
+}
+
+@mixin border-bottom-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+   -webkit-border-bottom-left-radius: $radius;
+   border-bottom-left-radius: $radius;
+   background-clip: padding-box;
+}
+
+@mixin border-left-radius($radius) {
+  -webkit-border-bottom-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+     -webkit-border-top-left-radius: $radius;
+     border-top-left-radius: $radius;
+     background-clip: padding-box;
+}
+
+@mixin box-shadow($x, $y, $z, $color){
+    -webkit-box-shadow: $x $y $z $color;
+       -moz-box-shadow: $x $y $z $color;
+        -ms-box-shadow: $x $y $z $color;
+         -o-box-shadow: $x $y $z $color;
+            box-shadow: $x $y $z $color;
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin abs-pos ($top: auto, $right: auto, $bottom: auto, $left: auto, $zIndex: 0) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  z-index: $zIndex;
+  position: absolute;
+}
+
+@mixin rel-pos ($top: auto, $right: auto, $bottom: auto, $left: auto, $zIndex: 0){
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  z-index: $zIndex;
+  position: relative;
+}
+
+@mixin fixed-pos ($top: auto, $right: auto, $bottom: auto, $left: auto, $zIndex: 0){
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    z-index: $zIndex;
+    position: fixed;
+  }
+
+@mixin inline-block() {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+}
+
+@mixin placeholder-color($color){
+  &.placeholder{
+    color: $color
+  }
+
+  &:-moz-placeholder{
+    color: $color
+  }
+    
+  &::-webkit-input-placeholder{
+    color: $color
+  }
+
+  &:-ms-input-placeholder{
+    color: $color
+  }
+}
+
+@mixin mQ($width){
+  @media screen and (max-width: $width){
+    @content;
+  }
+}

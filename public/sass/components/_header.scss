@@ -1,0 +1,160 @@
+header {
+	height: 100%;
+	width: 100%;
+
+	@include mQ(600px){
+		height: 80%;		
+	}
+	
+  .header-content {
+		width: 100%;
+		height: calc(100% - 70px);
+		position: relative;
+
+		@include mQ(600px){
+			height: calc(100% - 50px);
+		}
+
+		&.collect-header {
+			@include mQ(600px){
+				@include background('../images/barrow-2.png', $attach: fixed)
+			}
+
+			.text h2 {
+				font: {
+					weight: 300 !important;
+					size: 40px;
+				}
+			}
+		}
+
+		.carousel {
+			height: 100% !important;
+			width: 100%;
+
+			.carousel-item {
+				@extend .carousel;
+
+				@include mQ(600px){
+					&:first-child {
+						@include background('../images/trash.png', $attach: fixed)
+					}
+
+					&:nth-child(2){
+						@include background('../images/barrow.png', $attach: fixed)
+					}
+
+					&:last-child{
+						// @include background('../images/iphone.png')
+					}
+				}
+			}
+		}
+
+		.overlay {
+			@extend .carousel;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 30px 0;
+
+			@include mQ(600px){
+				background-color: rgba(#fff, .7);
+			}
+
+			> div {
+				width: 50%;
+
+				@include mQ(600px){
+					width: 100%;
+				}
+			}
+
+			.text {
+				padding: 0 50px;
+
+				@include mQ(600px){
+					padding: 0 30px;
+				}
+
+				h2 {
+					font-weight: 900;
+					margin-top: 0;
+					color: $headerColor;
+				}
+
+				p {
+					font-size: 16px;
+					color: $textColor;
+					display: flex;
+					align-items: center;
+					justify-content: flex-start;
+
+					@include mQ(600px){
+						color: $headerColor;
+					}
+
+					img {
+						height: 20px;
+						width: auto;
+						margin-right: 10px;
+					}
+				}
+			}
+
+			.image {
+				padding: 0 50px;
+				// padding-right: 50px;
+				position: relative;
+
+				@include mQ(600px){
+					display: none;
+					padding: 0 30px;
+				}
+
+				img {
+					width: 90%;
+					height: auto;
+					float: right;
+					position: relative;
+					z-index: 1;
+
+					&.small-image {
+						width: 50%;
+						margin-right: 50px;
+					}
+				}
+
+				.green-box {
+					height: 300px;
+					width: 200px;
+					position: absolute;
+					top: -30px;
+					right: 20px;
+					z-index: 0;
+					background-color: $accent;
+				}
+			}
+		}
+
+		.arrows {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			padding: 20px 0;
+			text-align: center;
+
+			a {
+				height: 30px;
+				width: 30px;
+				display: inline-block;
+				border: 1px solid $accent;
+				color: $accent;
+				text-align: center;
+				line-height: 25px;
+				margin: 0 2px;
+			}
+		}
+	}
+}

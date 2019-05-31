@@ -1,12 +1,16 @@
 const express = require('express')
-const app = express()
+const router = express.Router()
 
-const Auth = require('./User/')
-const Bubbue = require('./Bubbue/')
-const Orders = require('./Order/')
+router.get('/', (req, res) => {
+	res.render('index.html')
+})
 
-app.use('/user', Auth)
-app.use('/bubbue', Bubbue)
-app.use('/orders', Orders)
+router.get('/collect', (req, res) => {
+	res.render('collect.html')
+})
 
-module.exports = app
+router.get('/dispose', (req, res) => {
+	res.render('dispose.html')
+})
+
+module.exports = router

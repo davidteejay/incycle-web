@@ -13,16 +13,13 @@ const { DB_URL } = require('./config/constants')
 
 app.use(bodyParser.json())
 app.use(urlencoded_body_parser)
+app.use(express.static('public'))
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.engine('html', ejs.renderFile)
 
-mongoose.connect(DB_URL)
-    .then(() => console.log('Connected to DB'))
-    .catch(() => console.log('DB Offline'))
-
-app.use('/api/v1/', router)
+app.use('/', router)
 
 app.listen(process.env.PORT || port, () => {
     console.log('running at localhost:' + port)

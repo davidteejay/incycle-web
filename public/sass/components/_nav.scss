@@ -1,0 +1,61 @@
+nav {
+	padding: 0 50px;
+	height: 70px;
+	position: relative;
+	z-index: 10;
+
+	@include mQ(600px){
+		padding: 0 30px;
+		height: 50px;
+	}
+
+	.nav-wrapper {
+		height: 100%;
+		width: 100%;
+
+		a.brand-logo {
+			height: 100%;
+			width: auto;
+			padding: 10px 0;
+			// padding-top: 5px;
+			position: static;
+			margin-right: 20px;
+
+			@include mQ(600px){
+				padding: 5px 0;
+			}
+
+			img {
+				height: 100%;
+				width: auto;
+			}
+		}
+
+		a.button-collapse {
+			height: 100%;
+			line-height: 70px;
+			color: $headerColor;
+
+			@include mQ(600px){
+				line-height: 50px;
+			}
+
+			i {
+				@extend a.button-collapse;
+			}
+		}
+
+		ul {
+			li {
+				background-color: transparent !important;
+				height: 100%;
+				line-height: 75px;
+
+				a {
+					@extend li;
+					color: $headerColor;
+				}
+			}
+		}
+	}
+}

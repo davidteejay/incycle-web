@@ -1,0 +1,31 @@
+footer {
+	background-color: #fff;
+	padding: 50px;
+
+	@include mQ(600px){
+		padding: 30px;
+	}
+
+	.row {
+		margin: 0;
+
+		.col {
+			* {
+				color: $textColor !important;
+			}
+
+			img {
+				&.logo {
+					height: 50px;
+					width: auto;
+				}
+
+				&.social {
+					height: 40px;
+					width: auto;
+					margin-right: 20px;
+				}
+			}
+		}
+	}
+}
